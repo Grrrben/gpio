@@ -29,13 +29,8 @@ func main() {
 	// Unmap gpio memory when done
 	defer rpio.Close()
 
-	frontLights := gpio.NewLed(10)
-	backLights := gpio.NewLed(9)
-
-	go frontLights.BlinkBlink(10)
-	go backLights.Blink()
-
-	gpio.Measure()
+	car := gpio.NewCar()
+	car.Init()
 
 	// wait for everything to finish
 	forever := make(chan bool)
