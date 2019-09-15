@@ -1,0 +1,6 @@
+github.com/grrrben/glog v0.0.0-20180411093123-ac76efad32f3 h1:jhw6vszcco+mbQN+IctqYo+V5MAy9kdWj9l7Bl4/vlM=
+github.com/grrrben/glog v0.0.0-20180411093123-ac76efad32f3/go.mod h1:Abd4kgZAtq6C3PwVVJfDJERxdUFWqWTohWL2FEbVXMk=
+github.com/stianeikeland/go-rpio v4.2.0+incompatible h1:CUOlIxdJdT+H1obJPsmg8byu7jMSECLfAN9zynm5QGo=
+github.com/stianeikeland/go-rpio v4.2.0+incompatible/go.mod h1:Sh81rdJwD96E2wja2Gd7rrKM+XZ9LrwvN2w4IXrqLR8=
+github.com/stianeikeland/go-rpio/v4 v4.4.0 h1:LScvNyXHF412co42LG5t7bvBDbtDAhLF828ebaGqmjA=
+github.com/stianeikeland/go-rpio/v4 v4.4.0/go.mod h1:BkK52zk+FRk8wCTDf88/86Sojc+NfUiCAHd1ZV3RuTM=
