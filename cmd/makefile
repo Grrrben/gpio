@@ -8,7 +8,7 @@ BINARY_NAME=rpi
 all: test build
 
 build:
-	$(GOBUILD) -o $(BINARY_NAME) -v
+	env GOOS=linux GOARCH=arm GOARM=5 $(GOBUILD) -o $(BINARY_NAME) -v
 test:
 	$(GOTEST) -v ../
 clean:
@@ -18,3 +18,5 @@ clean:
 run:
 	$(GOBUILD) -o $(BINARY_NAME) -v ./...
 	./$(BINARY_NAME)
+publish:
+	scp rpi pi@192.168.178.23:/home/pi/
