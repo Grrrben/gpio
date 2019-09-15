@@ -1,4 +1,4 @@
-module gpio/test
+module github.com/grrrben/gpio
 
 go 1.13
 
