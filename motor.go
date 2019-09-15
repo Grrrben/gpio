@@ -1,6 +1,9 @@
 package gpio
 
-import "github.com/stianeikeland/go-rpio"
+import (
+	"fmt"
+	"github.com/stianeikeland/go-rpio"
+)
 
 // L293D is 4 channel driver that creates the logic to
 // drive the motor
@@ -26,36 +29,21 @@ func NewMotor(plus, min, enable int) *motor {
 	return m
 }
 
-func (m *motor) Spin() {
+func (m *motor) Forwards() {
+	fmt.Println("Starting to spin forwards")
 	m.pinPlus.High()
 	m.pinMin.Low()
 	m.pinEnable.High()
 }
 
-/**
+func (m *motor) Backwards() {
+	fmt.Println("Starting to spin backwards")
+	m.pinPlus.Low()
+	m.pinMin.High()
+	m.pinEnable.High()
+}
 
-GPIO.output(MotorPin1, GPIO.HIGH)
-GPIO.output(MotorPin2, GPIO.LOW)
-# Enable the motor
-GPIO.output(MotorEnable, GPIO.HIGH)
-
-import RPi.GPIO as GPIO
-
-
-# Set up pins
-MotorPin1 = 17
-MotorPin2 = 18
-MotorEnable = 27
-
-
-def setup():
-    # Set the GPIO modes to BCM Numbering
-    GPIO.setmode(GPIO.BCM)
-    # Set pins to output
-    GPIO.setup(MotorPin1, GPIO.OUT)
-    GPIO.setup(MotorPin2, GPIO.OUT)
-    GPIO.setup(MotorEnable, GPIO.OUT, initial=GPIO.LOW)
-
-
-
-*/
+func (m *motor) Stop() {
+	fmt.Println("Stoppping to spin")
+	m.pinEnable.Low()
+}
