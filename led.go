@@ -1,4 +1,4 @@
-package components
+package gpio
 
 import (
 	"github.com/stianeikeland/go-rpio"
@@ -9,13 +9,22 @@ type Led struct {
 	pin rpio.Pin
 }
 
-// var pinNum corresponds to the BCM Pin Number
+// Param pinNum corresponds to the BCM Pin Number
+// Returns a pointer to a Led
 func NewLed(pinNum uint8) *Led {
 	l := new(Led)
 	l.pin = rpio.Pin(pinNum)
 	// Set pin to output mode
 	l.pin.Output()
 	return l
+}
+
+func (l *Led) On() {
+	l.pin.High()
+}
+
+func (l *Led) Off() {
+	l.pin.Low()
 }
 
 func (l *Led) Blink() {

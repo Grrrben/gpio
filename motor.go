@@ -1,4 +1,4 @@
-package components
+package gpio
 
 import (
 	"fmt"

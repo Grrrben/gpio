@@ -1,47 +1,49 @@
-package components
+package gpio
 
 import (
 	"github.com/stianeikeland/go-rpio"
 	"time"
 )
 
-// For the HC-SR04 ultrasonic distance meter
+const timeOutDuration = time.Second
+
+// A type for the HC-SR04 ultrasonic distance meter
 type HCSR04 struct {
 	triggerPin rpio.Pin
 	echoPin    rpio.Pin
 }
 
-func NewEcho(triggerNum, echoNum int) *HCSR04 {
-	e := new(HCSR04)
-	e.triggerPin = rpio.Pin(triggerNum)
-	e.echoPin = rpio.Pin(echoNum)
+func NewHCSR04(triggerNum, echoNum int) *HCSR04 {
+	h := new(HCSR04)
+	h.triggerPin = rpio.Pin(triggerNum)
+	h.echoPin = rpio.Pin(echoNum)
 
-	e.triggerPin.Output()
-	e.echoPin.Input()
+	h.triggerPin.Output()
+	h.echoPin.Input()
 
-	return e
+	return h
 }
 
 // returns the distance in centimeters
-func (e *HCSR04) Measure() float64 {
+func (h *HCSR04) Measure() float64 {
 
-	e.triggerPin.Low()
+	h.triggerPin.Low()
 	time.Sleep(time.Microsecond * 30)
-	e.triggerPin.High()
+	h.triggerPin.High()
 	time.Sleep(time.Microsecond * 30)
-	e.triggerPin.Low()
+	h.triggerPin.Low()
 	time.Sleep(time.Microsecond * 30)
 
 	// sometimes the HC-SR04 stalls, if so we just break on a set timeout
 	// todo check where it stalls (in which loop)
 loopHigh:
-	for timeout := time.After(time.Second); ; {
+	for timeout := time.After(timeOutDuration); ; {
 		select {
 		case <-timeout:
 			break loopHigh
 		default:
 		}
-		status := e.echoPin.Read()
+		status := h.echoPin.Read()
 		if status == rpio.High {
 			break
 		}
@@ -50,13 +52,13 @@ loopHigh:
 	begin := time.Now()
 
 loopLow:
-	for timeout := time.After(time.Second); ; {
+	for timeout := time.After(timeOutDuration); ; {
 		select {
 		case <-timeout:
 			break loopLow
 		default:
 		}
-		status := e.echoPin.Read()
+		status := h.echoPin.Read()
 		if status == rpio.Low {
 			break
 		}
