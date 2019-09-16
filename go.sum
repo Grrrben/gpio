@@ -1,3 +1,7 @@
+github.com/corrupt/go-smbus v0.0.0-20161116095124-d22f26546b05 h1:Ckb292DqV5bYqBJp/Quc+tZNkaqHhtXdUtg4fkE/ags=
+github.com/corrupt/go-smbus v0.0.0-20161116095124-d22f26546b05/go.mod h1:uEv7CjFLJMMPbXylPmgImmFEbutSu5MsgYS1Jt5DG80=
+github.com/davecheney/i2c v0.0.0-20140823063045-caf08501bef2 h1:dJlrNN+WwRQae3jpM5U4K/YEug8H70UJ81qFTIW8OWw=
+github.com/davecheney/i2c v0.0.0-20140823063045-caf08501bef2/go.mod h1:dLsKZHRI/M1y9t45kzobSt8ozHf+wsCe+ahxsg51Vy0=
 github.com/grrrben/glog v0.0.0-20180411093123-ac76efad32f3 h1:jhw6vszcco+mbQN+IctqYo+V5MAy9kdWj9l7Bl4/vlM=
 github.com/grrrben/glog v0.0.0-20180411093123-ac76efad32f3/go.mod h1:Abd4kgZAtq6C3PwVVJfDJERxdUFWqWTohWL2FEbVXMk=
 github.com/stianeikeland/go-rpio v4.2.0+incompatible h1:CUOlIxdJdT+H1obJPsmg8byu7jMSECLfAN9zynm5QGo=
