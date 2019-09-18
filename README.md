@@ -40,6 +40,18 @@ The speed/velocity/distance is a work in progress.
 
 See `examples/accelerometer/main.go` for usage.
 
+Label | Description | Usage
+--- | --- | ---
+| 5V | Supply voltage 5V | unused |  
+| 3.3V | 3.3v | wired to 3.3v (pin 1) |
+| GND | Ground | wired to Ground (pin 6) |  
+| SCL | Serial Communications Clock | wired to SCL (BCM 3) |   
+| SDA | Serial Data (I2C) | wired to SDA (BCM 2) |   
+| CS | Chip Select | wired to 3.3v |  
+| SDO | Ground | wired to Ground |  
+| INT1 | Interrupt 1 | unused |  
+| INT2 | Interrupt 2 | unused |
+
 ## Pin numbers
 
 See [pinout.xyz/(https://pinout.xyz/) for a handy overview of the pin numbering of the Raspberry Pi.
