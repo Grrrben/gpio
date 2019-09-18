@@ -67,7 +67,6 @@ loopLow:
 	end := time.Now()
 	diff := end.Sub(begin)
 	cm := (float64(diff.Nanoseconds()) * 17150) / 1000000000
-	//fmt.Println("DIFF", cm)
 
 	return cm
 }

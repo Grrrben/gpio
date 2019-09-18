@@ -1,7 +1,6 @@
 package gpio
 
 import (
-	"fmt"
 	"github.com/stianeikeland/go-rpio"
 	"time"
 )
@@ -37,21 +36,18 @@ func NewMotor(plus, min, enable int) *Motor {
 }
 
 func (m *Motor) SpinClockwize() {
-	fmt.Println("Starting to spin CW")
 	m.pinPlus.High()
 	m.pinMin.Low()
 	m.pinEnable.High()
 }
 
-func (m *Motor) SpinCountClockwize() {
-	fmt.Println("Starting to spin CCW")
+func (m *Motor) SpinCounterClockwize() {
 	m.pinPlus.Low()
 	m.pinMin.High()
 	m.pinEnable.High()
 }
 
 func (m *Motor) Stop() {
-	fmt.Println("Stoppping to spin")
 	m.pinEnable.Low()
 }
 
@@ -100,9 +96,9 @@ func (m *Motor) toggle() {
 
 	m.locked = true
 
+	// wait till the current switching stops...
 	time.Sleep(time.Second / 2)
 
-	fmt.Println("Switching")
 	m.pinPlus.Toggle()
 	m.pinMin.Toggle()
 	m.pinEnable.High()
