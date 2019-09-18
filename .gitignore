@@ -2,4 +2,5 @@
 
 # ignore all build examples
 examples/accelerometer/accelerometer
+examples/button/button
 examples/led/led

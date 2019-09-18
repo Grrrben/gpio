@@ -5,40 +5,63 @@ of several electronic components.
 
 ## Led
 
-Blingbling. See `examples/led/main.go` for usage.
+Blingbling. 
+
+### Usage
+See `examples/led/main.go` for usage.
+
+## Button
+
+Check if a button is pressed. 
+
+### Usage
+See `examples/button/main.go` for usage.
 
 ## Motor / L293D
 
 The motor is driven by a L293D is motor controller chip that 
 gives the motor the commands to move forward or backward.  
 
+### Usage
 Use the 3 public methods to spin CW, CWW or stop:
 ```
-SpinClockwize
-SpinCounterClockwize
-Stop
+SpinClockwize()
+SpinCounterClockwize()
+Stop()
 ```
 
 ## HC-SR04 Distance meter
 
 The HC-SR04 is a pulse/echo based distance meter. 
-Utilising the Measure() method, it will return a `float64` representing a distance in CM's.
+Utilising the `Measure()` method, it will return a `float64` representing a distance in CM's.
+
+As reading the distance is done by a sound based sensor, the meter is a bit slow. 
+Moreover, the code uses `time.sleep()` to make sure that the sensor is ready for use. 
+
+Putting this sensor in a goroutine is an excellent way to go. 
+You can just keep polling the distance while not having your entire program idle 
+through the process.
 
 ## ADXL345 Accelerometer
 
 An accelerometer is a device that measures the acceleration in a specific direction from gravity and movement.
-The ADXL345 is a 3 axis accel, basically it can measure acceleration in 3 directions simultaneously.
-When placed on a flat surface will always measure 9.81m/s2.
+The ADXL345 is a 3 axis accelerometer, basically it can measure acceleration in 3 directions simultaneously.
 
-To use the measurements of the ADXL345 use the helper type Vector (`adxlvector.go`) which has methods to retrieve
-usefull data such as the G force or a pitch and roll.
+The code gives you methods to retreive G force, the Ms2 gravitational force and degrees of tilt and roll.
+
+The speed/velocity/distance is a work in progress. 
+
+### Usage
+
+To use the measurements of the ADXL345 use the helper type Vector (`adxlvector.go`) which 
+has methods to retrieve usefull data such as the G force or a pitch and roll.
  
 The pitch and roll actually depend on the way the accelerometer is placed.
 This function is written based on the normal position of a prototype board
 
-The speed/velocity/distance is a work in progress. 
+See `examples/accelerometer/main.go`.
 
-See `examples/accelerometer/main.go` for usage.
+### Wiring
 
 Label | Description | Usage
 --- | --- | ---
