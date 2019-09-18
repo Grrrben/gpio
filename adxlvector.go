@@ -40,7 +40,6 @@ func NewVector(block []byte) *Vector {
 // (1) the G Force on the x axe
 // (2) the G Force on the y axe
 // (3) the G Force on the z axe.
-// If the Adxl345 is standing still in a flat position the z value ≈ 9.81
 func (v *Vector) GetGforce() (float64, float64, float64) {
 	x := round(float64(v.x) * scaleFactor)
 	y := round(float64(v.y) * scaleFactor)
