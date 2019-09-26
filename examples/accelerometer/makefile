@@ -4,7 +4,7 @@ GOCLEAN=go clean
 GOTEST=go test
 GOGET=go get
 BINARY_NAME=accelerometer
-RPI_IP=192.168.178.22
+RPI_IP=raspberrypi.local
 
 all: test build
 
