@@ -58,26 +58,26 @@ func (m *Motor) IsSpinning() bool {
 	return false
 }
 
-func (m *Motor) Forwards() {
+func (m *Motor) Clockwize() {
 	if rpio.ReadPin(m.pinPlus) == rpio.High {
-		// already going fw?
+		// already going CW?
 		if !m.IsSpinning() {
 			m.pinEnable.High()
 		}
 	} else {
-		// it's going backwards... Toggle the pins
+		// it's going CCW... Toggle the pins
 		m.toggle()
 	}
 }
 
-func (m *Motor) Backwards() {
+func (m *Motor) CounterClockwize() {
 	if rpio.ReadPin(m.pinMin) == rpio.High {
-		// already going bw?
+		// already going CCW?
 		if !m.IsSpinning() {
 			m.pinEnable.High()
 		}
 	} else {
-		// it's going forwards... Toggle the pins
+		// it's going CW... Toggle the pins
 		m.toggle()
 	}
 }
