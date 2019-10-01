@@ -12,6 +12,10 @@ type Motor struct {
 	pinPlus   rpio.Pin
 	pinMin    rpio.Pin
 	pinEnable rpio.Pin
+
+	// a breakTime, or pauze, kan be used to give the motor a small break
+	// before toggling the spinning direction
+	BreakTime time.Duration
 	locked    bool
 }
 
@@ -31,6 +35,8 @@ func NewMotor(plus, min, enable int) *Motor {
 	m.pinMin.Low()
 
 	m.locked = false
+
+	m.BreakTime = time.Second / 2
 
 	return m
 }
@@ -97,7 +103,7 @@ func (m *Motor) toggle() {
 	m.locked = true
 
 	// wait till the current switching stops...
-	time.Sleep(time.Second / 2)
+	time.Sleep(m.BreakTime)
 
 	m.pinPlus.Toggle()
 	m.pinMin.Toggle()
