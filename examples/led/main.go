@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/grrrben/gpio"
-	"github.com/stianeikeland/go-rpio"
+	"github.com/stianeikeland/go-rpio/v4"
 	"os"
 	"time"
 )
