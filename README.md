@@ -35,6 +35,9 @@ Stop()
 The HC-SR04 is a pulse/echo based distance meter. 
 Utilising the `Measure()` method, it will return a `float64` representing a distance in CM's.
 
+The circuit for connecting the HC-SR04 to the pi is a bit tricky to build. 
+Just [search](https://duckduckgo.com/?q=HC-SR04+circuit+raspberry&t=ffab&iax=images&ia=images&iai=https%3A%2F%2Ftutorials-raspberrypi.de%2Fwp-content%2Fuploads%2F2014%2F05%2Fultraschall_Steckplatine.png) for a nice diagram online.
+
 As reading the distance is done by a sound based sensor, the meter is a bit slow. 
 Moreover, the code uses `time.sleep()` to make sure that the sensor is ready for use. 
 
