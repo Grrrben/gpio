@@ -3,6 +3,8 @@
 This is a collection of different golang ports 
 of several electronic components.
 
+[![GoDoc](https://godoc.org/github.com/Grrrben/gpio?status.svg)](https://godoc.org/github.com/Grrrben/gpio)
+
 ## Led
 
 Blingbling. 
