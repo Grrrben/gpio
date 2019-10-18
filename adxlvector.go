@@ -23,10 +23,6 @@ type Vector struct {
 func NewVector(block []byte) *Vector {
 	a := new(Vector)
 
-	//  raw.x = (((int)_buff[1]) << 8) | _buff[0];
-	//  raw.y = (((int)_buff[3]) << 8) | _buff[2];
-	//  raw.z = (((int)_buff[5]) << 8) | _buff[4];
-
 	// x = 0x32 0x33
 	a.x = (int16(block[1]) << 8) | int16(block[0])
 	// y = 0x34 0x35

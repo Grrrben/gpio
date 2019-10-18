@@ -14,6 +14,8 @@ type ShiftRegister struct {
 	data  uint8
 }
 
+// NewShiftRegister is a factory for a new ShiftRegister instance
+// the struct is based on the 74HC595 shiftregister hardware.
 func NewShiftRegister(sdiNum, rclkNum, srclkNum int) (*ShiftRegister, error) {
 	r := new(ShiftRegister)
 

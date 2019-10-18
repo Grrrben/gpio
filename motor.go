@@ -6,8 +6,7 @@ import (
 )
 
 // L293D is 4 channel driver that creates the logic to
-// drive the Motor
-
+// drive a Motor
 type Motor struct {
 	pinPlus   rpio.Pin
 	pinMin    rpio.Pin
@@ -19,6 +18,7 @@ type Motor struct {
 	locked    bool
 }
 
+// NewMotor factory. Returns a pointer to a new motor instance
 func NewMotor(plus, min, enable int) *Motor {
 	m := new(Motor)
 
@@ -57,6 +57,7 @@ func (m *Motor) Stop() {
 	m.pinEnable.Low()
 }
 
+// IsSpinning returns a bool that tell's if the motor is running.
 func (m *Motor) IsSpinning() bool {
 	if rpio.ReadPin(m.pinEnable) == rpio.High {
 		return true
@@ -89,6 +90,8 @@ func (m *Motor) CounterClockwize() {
 }
 
 // toggle From spinning CW to CCW to CW etc
+// there is a breaktime that is taking between the toggle, this is so the motor can stop
+// before the toggle is triggered.
 func (m *Motor) toggle() {
 
 	if m.locked {
