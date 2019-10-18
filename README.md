@@ -66,14 +66,6 @@ This function is written based on the normal position of a prototype board
 
 See `examples/accelerometer/main.go`.
 
-## 74HC595 ShiftRegister
-
-Go bindings for the 74HC595, a shiftregister that controls 8 pins.
-
-### usage
-
-See `examples/shiftregister/main.go`.
-
 ### Wiring
 
 Label | Description | Usage
@@ -87,6 +79,14 @@ Label | Description | Usage
 | SDO | Ground | wired to Ground |  
 | INT1 | Interrupt 1 | unused |  
 | INT2 | Interrupt 2 | unused |
+
+## 74HC595 ShiftRegister
+
+Go bindings for the 74HC595, a shiftregister that controls 8 pins.
+
+### usage
+
+See `examples/shiftregister/main.go`.
 
 ## Pin numbers
 
