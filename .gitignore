@@ -3,4 +3,6 @@
 # ignore all build examples
 examples/accelerometer/accelerometer
 examples/button/button
+examples/shiftregister/shiftregister
+examples/rfidreader/rfidreader
 examples/led/led

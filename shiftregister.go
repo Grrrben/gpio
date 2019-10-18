@@ -2,60 +2,66 @@ package gpio
 
 import (
 	"github.com/stianeikeland/go-rpio/v4"
-	"time"
 )
 
 // a 74HC595 shiftregister
 type ShiftRegister struct {
-	sdi   rpio.Pin
-	rclk  rpio.Pin
-	srclk rpio.Pin
+	dataPin rpio.Pin
+	stcpPin rpio.Pin
+	shcpPin rpio.Pin
+
+	state rpio.State
+	data  uint8
 }
 
 func NewShiftRegister(sdiNum, rclkNum, srclkNum int) (*ShiftRegister, error) {
 	r := new(ShiftRegister)
 
 	// serial data input
-	r.sdi = rpio.Pin(sdiNum)
-	r.sdi.Output()
-	r.sdi.Low()
+	r.dataPin = rpio.Pin(sdiNum)
+	r.dataPin.Output()
+	r.dataPin.Low()
 
 	// memory clock input(STCP)
-	r.rclk = rpio.Pin(rclkNum)
-	r.rclk.Output()
-	r.rclk.Low()
+	// flush after data writes are done
+	r.stcpPin = rpio.Pin(rclkNum)
+	r.stcpPin.Output()
+	r.stcpPin.Low()
 
 	// shift register clock input(SHCP)
-	r.srclk = rpio.Pin(srclkNum)
-	r.srclk.Output()
-	r.srclk.Low()
+	// flush after each individual data write
+	r.shcpPin = rpio.Pin(srclkNum)
+	r.shcpPin.Output()
+	r.shcpPin.Low()
 
 	return r, nil
 }
 
-// Shift a set of 8 bitsSet the data to 74HC595
-func (r *ShiftRegister) Shift(b byte) {
+// flushShcp Flush the Shcp pin
+// call after each individual data write
+func (r *ShiftRegister) flushShcp() {
+	r.shcpPin.Write(r.state ^ 0x01)
+	r.shcpPin.Write(r.state)
+}
 
-	rpio.SpiTransmit(0x80 & b)
+// flushStcp Flush the Stcp pin
+// call after data writes are done
+func (r *ShiftRegister) flushStcp() {
+	r.stcpPin.Write(r.state ^ 0x01)
+	r.stcpPin.Write(r.state)
+}
 
-	r.srclk.High()
-	time.Sleep(time.Millisecond * 50)
-	r.srclk.Low()
-	r.rclk.High()
-	time.Sleep(time.Millisecond * 50)
-	r.rclk.Low()
+// setBit sets an individual bit
+func (r *ShiftRegister) setBit(bit rpio.State) {
+	r.dataPin.Write(bit)
+	r.flushShcp()
+}
 
-	//
-	//rpio.SpiTransmit(b)
-	//time.Sleep(time.Second)
-	//rpio.SpiTransmit(0x80 & b)
-	//time.Sleep(time.Second)
-
-	//GPIO.output(SDI, 0x80 & (dat << bit))
-	//GPIO.output(SRCLK, GPIO.HIGH)
-	//time.sleep(0.001)
-	//GPIO.output(SRCLK, GPIO.LOW)
-	//GPIO.output(RCLK, GPIO.HIGH)
-	//time.sleep(0.001)
-	//GPIO.output(RCLK, GPIO.LOW)
+// SendData sends the bytes to the shiftregister
+func (r *ShiftRegister) SendData(data uint8) {
+	r.data = data
+	for i := uint(0); i < 8; i++ {
+		r.setBit(rpio.State((r.data >> i) & 0x01))
+	}
+	r.flushStcp()
 }

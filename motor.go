@@ -88,7 +88,7 @@ func (m *Motor) CounterClockwize() {
 	}
 }
 
-// From spinning CW to CCW to CW etc
+// toggle From spinning CW to CCW to CW etc
 func (m *Motor) toggle() {
 
 	if m.locked {
