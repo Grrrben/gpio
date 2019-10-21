@@ -1,7 +1,6 @@
 # Go ports for electronic components
 
-This is a collection of different golang ports 
-of several electronic components.
+This is a collection of golang bindings for electronic components that are useful for robotics.
 
 [![GoDoc](https://godoc.org/github.com/Grrrben/gpio?status.svg)](https://godoc.org/github.com/Grrrben/gpio)
 
@@ -43,9 +42,18 @@ Just [search](https://duckduckgo.com/?q=HC-SR04+circuit+raspberry&t=ffab&iax=ima
 As reading the distance is done by a sound based sensor, the meter is a bit slow. 
 Moreover, the code uses `time.sleep()` to make sure that the sensor is ready for use. 
 
-Putting this sensor in a goroutine is an excellent way to go. 
+Putting this sensor in a goroutine can be a good way to go. 
 You can just keep polling the distance while not having your entire program idle 
 through the process.
+
+However, multiple sensors can interfere with each each other due to receiving each others echo's.
+
+> If you cycle through the sensors rather than trying to use them simultaneously 
+then there will be no problem with incorrectly received echoes. 
+They have a range of about 2m, so 4m (there and back) at 330m/s is 12ms. 
+Allow double this for good measure, so check one sensor every 25ms.
+
+See [raspberrypi.org](https://www.raspberrypi.org/forums/viewtopic.php?t=188700).
 
 ## ADXL345 Accelerometer
 
