@@ -88,6 +88,11 @@ Label | Description | Usage
 | INT1 | Interrupt 1 | unused |  
 | INT2 | Interrupt 2 | unused |
 
+### Datasheet
+
+See the [datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf) for 
+additional information and possible settings of the ADXL345.
+
 ## 74HC595 ShiftRegister
 
 Go bindings for the 74HC595, a shiftregister that controls 8 pins.
