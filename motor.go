@@ -59,10 +59,7 @@ func (m *Motor) Stop() {
 
 // IsSpinning returns a bool that tell's if the motor is running.
 func (m *Motor) IsSpinning() bool {
-	if rpio.ReadPin(m.pinEnable) == rpio.High {
-		return true
-	}
-	return false
+	return rpio.ReadPin(m.pinEnable) == rpio.High
 }
 
 func (m *Motor) Clockwize() {

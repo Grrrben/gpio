@@ -103,7 +103,7 @@ See `examples/shiftregister/main.go`.
 
 ## Pin numbers
 
-See [pinout.xyz/(https://pinout.xyz/) for a handy overview of the pin numbering of the Raspberry Pi.
+See [pinout.xyz](https://pinout.xyz/) for a handy overview of the pin numbering of the Raspberry Pi.
 ![map](https://pinout.xyz/resources/raspberry-pi-pinout.png)
 
 ## Building the components
@@ -114,5 +114,9 @@ For cross compiling, the CGO_ENABLED and CC args should be set in the build comm
 
 For debian/linux it's something like: 
 `env GOOS=linux GOARCH=arm GOARM=5 CC=arm-linux-gnueabi-gcc CGO_ENABLED=1 $(GOBUILD) -o $(BINARY_NAME) -v`
+
+The **gcc-arm-linux-gnueabi** is needed; the package is fount in apt (debian...): 
+`sudo apt install gcc-arm-linux-gnueabi`
+
 
 See the `makefile` in the `/examples/<component>` directories.
